@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,9 @@ import bok.artenes.todoapp.common.Dependencies
 import bok.artenes.todoapp.core.Task
 import kotlinx.android.synthetic.main.item_tasks.view.*
 
+/**
+ * An adapter to display a list of tasks.
+ */
 class TasksAdapter : ListAdapter<Task, TasksAdapter.TaskViewHolder>(DIFF_CALLBACK) {
 
     private val repository = Dependencies.repository
@@ -26,17 +30,11 @@ class TasksAdapter : ListAdapter<Task, TasksAdapter.TaskViewHolder>(DIFF_CALLBAC
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = getItem(position)
 
-        val paintFlags = holder.checkBox.paintFlags
-        val stroked = if (task.done) paintFlags or Paint.STRIKE_THRU_TEXT_FLAG else paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-        holder.checkBox.paintFlags = stroked
+        toggleStroke(holder.checkBox, task.done)
         holder.checkBox.text = task.description
         holder.checkBox.isChecked = task.done
-        holder.itemView.setOnClickListener {
-            onTaskCheckedChanged(task)
-        }
-        holder.button.setOnClickListener {
-            onDeleteTask(task)
-        }
+        holder.itemView.setOnClickListener { onTaskCheckedChanged(task) }
+        holder.button.setOnClickListener { onDeleteTask(task) }
     }
 
     private fun onTaskCheckedChanged(task: Task) {
@@ -50,6 +48,16 @@ class TasksAdapter : ListAdapter<Task, TasksAdapter.TaskViewHolder>(DIFF_CALLBAC
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val checkBox: CheckBox = itemView.checkBoxTask
         val button: Button = itemView.buttonDelete
+    }
+
+    //TODO-TIL Paint flags are used to strike a text programmatically.
+    private fun toggleStroke(textView: TextView, stroke: Boolean) {
+        if (stroke) {
+            textView.paintFlags = textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        } else {
+            //TODO-TIL To invert bits we use a function called inv() in the variable.
+            textView.paintFlags = textView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+        }
     }
 
     companion object {

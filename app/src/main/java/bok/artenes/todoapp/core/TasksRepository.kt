@@ -15,6 +15,8 @@ class TasksRepository(
     /**
      * Transforms the serialized list of tasks from the [KeyValueRepository]
      * to a list of tasks.
+     * TODO-TIL Kotlin does not give support to SAM for interfaces defined in Kotlin. That's
+     *  that's why we have to be a little more verbose here to create this anonymous object.
      */
     private val tasksMutator = object : MediatorObservableValue.Mutator<String, List<Task>> {
         override fun mutate(input: String): List<Task> {

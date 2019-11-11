@@ -3,7 +3,7 @@ package bok.artenes.todoapp.common
 import kotlin.properties.Delegates
 
 /**
- * An observable value.
+ * An observable value that can be edited.
  */
 open class ObservableValue<T>(initialValue: T) : Observable<T> {
 

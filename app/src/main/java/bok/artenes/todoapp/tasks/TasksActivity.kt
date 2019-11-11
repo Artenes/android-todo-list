@@ -18,6 +18,9 @@ import kotlinx.android.synthetic.main.activity_tasks.*
 
 class TasksActivity : AppCompatActivity() {
 
+    //we are not using any presentation pattern here such as MVVM or MVP
+    //so the activity will hold some logic to deal with the data that comes
+    //from the repository.
     private val repository: TasksRepository by lazy {
         Dependencies.repository
     }
@@ -45,14 +48,14 @@ class TasksActivity : AppCompatActivity() {
         repository.getTasks()
     }
 
-    private val onTaskInsert = TextView.OnEditorActionListener { _, actionId, _ ->
+    private val onTaskInsert = TextView.OnEditorActionListener { view, actionId, _ ->
         when (actionId) {
             EditorInfo.IME_ACTION_SEND -> {
-                val taskDescription = editTextTask.text.toString()
+                val taskDescription = view.text.toString()
                 val task = Task(description = taskDescription, done = false)
                 repository.save(task)
-                editTextTask.setText("")
-                Device.hideKeyboardOn(editTextTask)
+                view.text = ""
+                Device.hideKeyboardOn(view)
                 true
             }
             else -> false
@@ -68,6 +71,9 @@ class TasksActivity : AppCompatActivity() {
         recyclerViewTasks.layoutManager = layoutManager
         recyclerViewTasks.adapter = adapter
         recyclerViewTasks.addItemDecoration(dividerDecorator)
+        //TODO-TIL By default, recycler view will animate when items changes. This never seems to
+        // be interesting because this makes the items blink in a list update, so to avoid this
+        // we have to disable these animations (but the insert and delete ones will remain)
         (recyclerViewTasks.itemAnimator as DefaultItemAnimator).supportsChangeAnimations = false
         editTextTask.setOnEditorActionListener(onTaskInsert)
 
