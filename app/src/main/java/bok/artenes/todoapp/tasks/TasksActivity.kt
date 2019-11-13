@@ -50,7 +50,7 @@ class TasksActivity : AppCompatActivity() {
 
     private val onTaskInsert = TextView.OnEditorActionListener { view, actionId, _ ->
         when (actionId) {
-            EditorInfo.IME_ACTION_SEND -> {
+            EditorInfo.IME_ACTION_DONE -> {
                 val taskDescription = view.text.toString()
                 val task = Task(description = taskDescription, done = false)
                 repository.save(task)
