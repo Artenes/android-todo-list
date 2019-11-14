@@ -4,8 +4,8 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.CheckBox
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -47,7 +47,7 @@ class TasksAdapter : ListAdapter<Task, TasksAdapter.TaskViewHolder>(DIFF_CALLBAC
 
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val checkBox: CheckBox = itemView.checkBoxTask
-        val button: Button = itemView.buttonDelete
+        val button: ImageButton = itemView.buttonDelete
     }
 
     //TODO-TIL Paint flags are used to strike a text programmatically.

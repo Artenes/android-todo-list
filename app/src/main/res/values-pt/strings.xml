@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_tasks">Sem tarefas</string>
+    <string name="type_your_task_here">Digite sua tarefa aqui</string>
+</resources>

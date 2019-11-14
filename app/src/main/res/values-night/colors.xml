@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorStroke">#fff</color>
+    <color name="colorBackground">#000</color>
+    <color name="colorText">#FFFFFF</color>
+    <color name="colorDivider">#fff</color>
+    <color name="colorCard">#FFF</color>
+    <color name="colorCardText">#000</color>
+    <color name="colorCardTextHint">#CC000000</color>
+</resources>

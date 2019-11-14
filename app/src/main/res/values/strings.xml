@@ -15,5 +15,6 @@
     <string name="menu_send">Send</string>
 
     <!--Tasks-->
-    <string name="tasks_title">All tasks</string>
+    <string name="no_tasks">No tasks</string>
+    <string name="type_your_task_here">Type your task here</string>
 </resources>
