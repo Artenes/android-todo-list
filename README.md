@@ -8,6 +8,10 @@ Android app to create, mark as done and delete tasks.
 
 Made this app to practice some android development using kotlin.
 
+# Video demo
+
+[Watch demo on youtube](https://youtu.be/8MEAoHnURMo)
+
 # What's the catch
 
 In this project I've imposed two restrictions: 
